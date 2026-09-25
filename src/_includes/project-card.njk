@@ -1,0 +1,28 @@
+<article class="portfolio-item group flex flex-col rounded-xl overflow-hidden bg-slate-900/80 border border-slate-800 hover:border-[#486b85] hover:shadow-[0_0_30px_rgba(72,107,133,0.3)] transition-all duration-300" data-category="{{ project.categories | join(' ') }}">
+<div class="relative w-full h-64 overflow-hidden bg-slate-950">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="{{ project.imageAlt }}" src="{{ project.image }}"/>
+<div class="absolute top-4 left-4 flex gap-2">
+<span class="px-2.5 py-1 rounded bg-slate-950/85 border border-slate-700/60 backdrop-blur-md text-cyan-300 font-label-uppercase text-label-uppercase">{{ project.badge | safe }}</span>
+</div>
+</div>
+<div class="p-space-lg flex flex-col flex-1">
+<div class="flex items-center gap-2 mb-space-xs text-cyan-400 font-label-uppercase text-label-uppercase">
+<span>{{ project.metaLeft }}</span>
+<span>•</span>
+<span>{{ project.metaRight }}</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-white font-bold mb-space-xs">
+              {{ project.title | safe }}
+            </h3>
+<p class="font-body-md text-body-md text-slate-400 mb-space-md">
+              {{ project.description }}
+            </p>
+<div class="flex flex-wrap gap-2 mb-space-md">
+{% for tag in project.tags %}<span class="px-2 py-0.5 rounded bg-slate-800/80 border border-slate-700/60 font-body-sm text-body-sm text-slate-300">{{ tag | safe }}</span>
+{% endfor %}</div>
+<div class="mt-auto pt-space-sm border-t border-slate-800/60 flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-cyan-400 font-medium">{{ project.location }}</span>
+<span class="material-symbols-outlined text-cyan-400 group-hover:translate-x-1 transition-transform">arrow_outward</span>
+</div>
+</div>
+</article>

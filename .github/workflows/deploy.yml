@@ -12,6 +12,17 @@ jobs:
       - name: Scarica il codice
         uses: actions/checkout@v4
 
+      - name: Installa Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Installa le dipendenze
+        run: npm ci
+
+      - name: Build del sito con Eleventy
+        run: npx @11ty/eleventy
+
       - name: Deploy via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
@@ -19,13 +30,7 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           port: ${{ secrets.FTP_PORT }}
-          local-dir: ./
+          local-dir: ./_site/
           server-dir: /
           exclude: |
-            **/.git*
-            **/.git*/**
-            **/.htaccess
-            **/.user.ini
-            **/php.ini
-            **/cgi-bin/**
             **/.well-known/**
