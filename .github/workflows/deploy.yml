@@ -1,4 +1,4 @@
-name: Deploy Eleventy to Artera
+name: Deploy to Artera
 
 on:
   push:
@@ -6,30 +6,26 @@ on:
       - main
 
 jobs:
-  build-and-deploy:
+  ftp-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+      - name: Scarica il codice
+        uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 20
-
-      - name: Install
-        run: npm ci
-
-      - name: Build
-        run: npm run build
-
-      - name: Deploy to Artera
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      - name: Deploy via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           port: ${{ secrets.FTP_PORT }}
-          local-dir: ./_site/
+          local-dir: ./
           server-dir: /
-          protocol: ftps
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/.htaccess
+            **/.user.ini
+            **/php.ini
+            **/cgi-bin/**
+            **/.well-known/**
