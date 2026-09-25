@@ -32,5 +32,10 @@ jobs:
           port: ${{ secrets.FTP_PORT }}
           local-dir: ./_site/
           server-dir: /
+          dangerous-clean-slate: true
           exclude: |
+            **/.htaccess
+            **/.user.ini
+            **/php.ini
+            **/cgi-bin/**
             **/.well-known/**
