@@ -2,28 +2,28 @@ name: Deploy Eleventy to Artera
 
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - main
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout Code
+      - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Setup Node.js
+      - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: '20'
+          node-version: 20
 
-      - name: Install Dependencies
+      - name: Install
         run: npm ci
 
-      - name: Build Eleventy Site
+      - name: Build
         run: npm run build
 
-      - name: Deploy via SFTP to Artera
+      - name: Deploy SFTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
           server: ${{ secrets.ARTERA_HOST }}
@@ -32,11 +32,3 @@ jobs:
           local-dir: ./_site/
           server-dir: /
           protocol: sftp
-          exclude: |
-            **/.git*
-            **/.git/**
-            **/node_modules/**
-            .DS_Store
-            **/.eleventy.js
-            **/package.json
-            **/src/**
