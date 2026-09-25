@@ -43,34 +43,5 @@
     "imageAlt": "Portale turistico ed eventi di Pro Loco Morbegno",
     "featured": true,
     "order": 3
-  },
-  {
-    "slug": "bigais-design-hub",
-    "title": "Bigais Design Collaboration Hub",
-    "categories": ["branding", "web-design"],
-    "badge": "Co-Branding &amp; Design System",
-    "metaLeft": "Studio Creativo",
-    "metaRight": "Design System",
-    "description": "Sviluppo dell'architettura digitale e integrazione del design system coordinato, unendo sensibilità grafica raffinata e codice d'avanguardia in una partnership sinergica.",
-    "tags": ["Design System", "Interactive UI", "Brand Voice"],
-    "location": "Chiavenna / Svizzera",
-    "image": "images/portfolio/bigais-design.jpg",
-    "imageAlt": "Design system e brand identity realizzati con Bigais Design",
-    "featured": true,
-    "order": 4
-  }, {
-    "slug": "prova",
-    "title": "prova",
-    "categories": ["branding", "web-design"],
-    "badge": "Co-Branding &amp; Design System",
-    "metaLeft": "Studio Creativo",
-    "metaRight": "Design System",
-    "description": "Sviluppo dell'architettura digitale e integrazione del design system coordinato, unendo sensibilità grafica raffinata e codice d'avanguardia in una partnership sinergica.",
-    "tags": ["Design System", "Interactive UI", "Brand Voice"],
-    "location": "Chiavenna / Svizzera",
-    "image": "images/portfolio/bigais-design.jpg",
-    "imageAlt": "Design system e brand identity realizzati con Bigais Design",
-    "featured": true,
-    "order": 5
   }
 ]
