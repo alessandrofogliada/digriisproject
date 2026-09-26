@@ -276,6 +276,122 @@
     left: 30%;
   }
 
+  /* Effetto "PS2 boot screen" - nebulosa blu animata */
+.ps2-glow-wrap {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.ps2-glow-wrap .blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  mix-blend-mode: screen;
+  opacity: 0.55;
+}
+.ps2-blob-1 {
+  width: 420px; height: 420px;
+  background: radial-gradient(circle, #38bdf8 0%, #1e6fa8 45%, transparent 70%);
+  top: 10%; left: 15%;
+  animation: ps2Drift1 14s ease-in-out infinite;
+}
+.ps2-blob-2 {
+  width: 320px; height: 320px;
+  background: radial-gradient(circle, #7bd0ff 0%, #2fd9f4 40%, transparent 70%);
+  bottom: 5%; right: 20%;
+  animation: ps2Drift2 18s ease-in-out infinite;
+}
+.ps2-blob-3 {
+  width: 260px; height: 260px;
+  background: radial-gradient(circle, #486b85 0%, #0a3a52 45%, transparent 70%);
+  top: 40%; left: 55%;
+  animation: ps2Drift3 21s ease-in-out infinite;
+}
+
+@keyframes ps2Drift1 {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.5; }
+  33%      { transform: translate(60px, -40px) scale(1.15); opacity: 0.7; }
+  66%      { transform: translate(-30px, 30px) scale(0.9); opacity: 0.4; }
+}
+@keyframes ps2Drift2 {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.45; }
+  40%      { transform: translate(-70px, 20px) scale(1.2); opacity: 0.65; }
+  70%      { transform: translate(40px, -50px) scale(0.85); opacity: 0.35; }
+}
+@keyframes ps2Drift3 {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.4; }
+  50%      { transform: translate(-50px, -30px) scale(1.25); opacity: 0.6; }
+}
+
+/* Piccola scintilla con scia, come nel video */
+.ps2-spark {
+  position: absolute;
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 8px 2px #7bd0ff, 0 0 20px 6px rgba(56,189,248,0.5);
+  top: 55%; left: 10%;
+  animation: ps2SparkMove 9s ease-in-out infinite;
+}
+@keyframes ps2SparkMove {
+  0%   { transform: translate(0, 0); opacity: 0; }
+  10%  { opacity: 1; }
+  50%  { transform: translate(180px, -60px); opacity: 0.8; }
+  90%  { opacity: 0; }
+  100% { transform: translate(260px, -90px); opacity: 0; }
+}
+
+/* Fili neon animati (orizzontali/verticali) */
+.neon-wrap {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.neon-line {
+  position: absolute;
+  border-radius: 999px;
+  opacity: 0.85;
+}
+
+/* Linee orizzontali */
+.neon-h {
+  height: 2px;
+  width: 260px;
+  background: linear-gradient(90deg, transparent, var(--nc) 50%, transparent);
+  box-shadow: 0 0 6px var(--nc), 0 0 16px var(--nc);
+}
+.neon-h-1 { --nc: #38bdf8; top: 18%; left: -20%; animation: neonMoveH 8s linear infinite; }
+.neon-h-2 { --nc: #7bd0ff; top: 52%; left: -20%; animation: neonMoveH 11s linear infinite 2s; }
+.neon-h-3 { --nc: #c084fc; top: 78%; left: -20%; animation: neonMoveH 9.5s linear infinite 4.5s; }
+
+@keyframes neonMoveH {
+  0%   { left: -20%; opacity: 0; }
+  8%   { opacity: 0.85; }
+  92%  { opacity: 0.85; }
+  100% { left: 120%; opacity: 0; }
+}
+
+/* Linee verticali */
+.neon-v {
+  width: 2px;
+  height: 220px;
+  background: linear-gradient(180deg, transparent, var(--nc) 50%, transparent);
+  box-shadow: 0 0 6px var(--nc), 0 0 16px var(--nc);
+}
+.neon-v-1 { --nc: #2fd9f4; left: 22%; top: -25%; animation: neonMoveV 10s linear infinite 1s; }
+.neon-v-2 { --nc: #486b85; left: 68%; top: -25%; animation: neonMoveV 13s linear infinite 3s; }
+.neon-v-3 { --nc: #f472b6; left: 85%; top: -25%; animation: neonMoveV 9s linear infinite 6s; }
+
+@keyframes neonMoveV {
+  0%   { top: -25%; opacity: 0; }
+  8%   { opacity: 0.85; }
+  92%  { opacity: 0.85; }
+  100% { top: 120%; opacity: 0; }
+}
+
+
 </style>
 </head>
 <body class="bg-[#070e14] font-body-md text-on-surface antialiased selection:bg-cyan-500/30 selection:text-cyan-200">
