@@ -125,85 +125,46 @@ permalink: "/contatti/"
           </div>
         </div>
 
-        <!-- COLONNA DESTRA: Form -->
-        <div class="lg:col-span-7" id="contact-form">
-          <div class="bg-slate-950 p-6 sm:p-8 rounded-2xl border border-slate-800 shadow-inner">
-            <h3 class="text-xl font-bold text-white mb-1">Invia un messaggio o richiedi una consulenza</h3>
-            <p class="text-xs sm:text-sm text-slate-400 mb-6">Compila i campi sottostanti per ricevere un feedback dettagliato e una stima trasparente.</p>
-            
-            <!-- FORM START -->
-            <!-- SOSTITUISCI 'TUO_EMAIL_QUI' CON LA TUA EMAIL REALE PER RICEVERE I DATI -->
-<form action="https://formsubmit.co/info@digriisproject.it" method="POST" class="space-y-5">              
-              <!-- Configurazione FormSubmit -->
-              <input type="hidden" name="_subject" value="Nuovo contatto da Digriisproject.it">
-              <input type="hidden" name="_captcha" value="false">
-              <input type="hidden" name="_next" value="https://digriisproject.it/contatti/grazie/"> <!-- Opzionale: crea una pagina grazie -->
+<!-- COLONNA DESTRA: Immagine -->
+<div class="lg:col-span-7 flex items-center justify-center">
+  <div class="relative w-full h-full min-h-[320px] lg:min-h-[480px] rounded-2xl overflow-hidden border border-slate-800 shadow-2xl">
+    <div class="flow-wrap">
+  <svg class="flow-lines" viewBox="0 0 540 620" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+    <!-- tracciato di base -->
+    <path class="flow-track"
+          d="M 255 100
+C 300 100, 337 100, 337 135
+C 337 180, 337 235, 337 285
+M 205 410
+C 205 435, 205 460, 230 460
+C 244 460, 250 460, 278 460" />
+    <!-- tracciato animato: linea SOPRA (scorre verso destra) -->
+    <path class="flow-move flow-top"
+          d="M 255 100
+C 300 100, 337 100, 337 135
+C 337 180, 337 235, 337 285" />
+    <!-- tracciato animato: linea SOTTO (scorre verso sinistra) -->
+    <path class="flow-move flow-bottom"
+          d="M 205 410
+C 205 435, 205 460, 230 460
+C 244 460, 250 460, 278 460" />
+  </svg>
+  <!-- Card 1 (in alto a sinistra) -->
+  <figure class="flow-card flow-card--1">
+    <img src="/images/Digriisproject-contact-1.webp"
+         alt="Persona al lavoro in un caffè" loading="lazy">
+  </figure>
+  <!-- Card 2 (in basso a destra) -->
+  <figure class="flow-card flow-card--2">
+    <img src="/images/Digriisproject-contact-2.webp"
+         alt="Mani su un laptop" loading="lazy">
+  </figure>
+</div>
 
-              <!-- Nome -->
-              <div>
-                <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5" for="full-name">
-                  Nome completo <span class="text-red-400">*</span>
-                </label>
-                <input class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-sm text-white placeholder-slate-500 outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all" id="full-name" name="name" placeholder="es. Marco Rossi" required type="text"/>
-              </div>
-              
-              <!-- Email & Telefono -->
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5" for="email">
-                    Email <span class="text-red-400">*</span>
-                  </label>
-                  <input class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-sm text-white placeholder-slate-500 outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all" id="email" name="email" placeholder="es. marco@azienda.it" required type="email"/>
-                </div>
-                <div>
-                  <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5" for="phone">
-                    Telefono / WhatsApp
-                  </label>
-                  <input class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-sm text-white placeholder-slate-500 outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all" id="phone" name="phone" placeholder="es. +39 340 000 0000" type="tel"/>
-                </div>
-              </div>
-              
-              <!-- Tipologia
-              <div>
-                <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5" for="service-type">
-                  Di cosa hai bisogno?
-                </label>
-                <select class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-sm text-white outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all" id="service-type" name="service">
-                  <option class="bg-slate-900 text-white" value="sito-web">Sito Web su Misura</option>
-                  <option class="bg-slate-900 text-white" value="web-app">Applicazione Web / Gestionale</option>
-                  <option class="bg-slate-900 text-white" value="restyling">Restyling & Ottimizzazione</option>
-                  <option class="bg-slate-900 text-white" value="brand-identity">Brand Identity & Logo</option>
-                  <option class="bg-slate-900 text-white" value="consulenza">Consulenza Strategica</option>
-                </select>
-              </div>  -->
-              
-              <!-- Messaggio -->
-              <div>
-                <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5" for="message">
-                  Descrivi il progetto <span class="text-red-400">*</span>
-                </label>
-                <textarea class="w-full px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-sm text-white placeholder-slate-500 outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all resize-y" id="message" name="message" placeholder="Raccontami la tua attività, cosa desideri ottenere..." required rows="4"></textarea>
-              </div>
-              
-              <!-- Privacy -->
-              <div class="flex items-start gap-3 pt-1">
-                <div class="flex items-center h-5">
-                  <input class="w-4 h-4 rounded bg-slate-900 border-slate-700 text-cyan-600 focus:ring-cyan-500 focus:ring-offset-0 focus:ring-1" id="privacy" name="privacy" required type="checkbox"/>
-                </div>
-                <label class="text-xs text-slate-400 leading-relaxed" for="privacy">
-                  Ho letto e accetto la <a href="#" class="text-cyan-400 hover:underline font-medium">Privacy Policy</a> e acconsento al trattamento dei dati. <span class="text-red-400">*</span>
-                </label>
-              </div>
-              
-              <!-- Submit -->
-              <div class="pt-2">
-                <button class="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-3.5 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-cyan-700 to-slate-700 hover:from-cyan-600 hover:to-slate-600 transition-all duration-300 shadow-md hover:shadow-cyan-900/30 cursor-pointer" type="submit">
-                  <span>Invia Richiesta di Preventivo</span>
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-                </button>
-              </div>
-            </form>
-            <!-- FORM END -->
+    <!-- Overlay leggero per coerenza con il resto del sito -->
+    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent pointer-events-none"></div>
+  </div>
+</div>
 
           </div>
         </div>

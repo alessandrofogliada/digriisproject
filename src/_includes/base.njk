@@ -391,7 +391,77 @@
   100% { top: 120%; opacity: 0; }
 }
 
-
+/* --- Variabili: modifica qui colore e velocità --- */
+.flow-wrap{
+  --flow-color: #3a9aa5;   /* colore delle linee */
+  --flow-speed: 2s;        /* velocità del flusso (più basso = più veloce) */
+  --radius: 25px;          /* arrotondamento angoli card */
+  position: relative;
+  width: 100%;
+  max-width: 540px;
+  margin: 0 auto;
+  aspect-ratio: 540 / 620;   /* mantiene le proporzioni */
+}
+/* --- Linee SVG dietro le card --- */
+.flow-lines{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  overflow: visible;
+}
+.flow-track{
+  fill: none;
+  stroke: var(--flow-color);
+  stroke-width: 2.5;
+  opacity: .30;
+}
+.flow-move{
+  fill: none;
+  stroke: var(--flow-color);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  /* pattern: 60px di linea "accesa", 260px di vuoto → sembra un impulso che scorre */
+  stroke-dasharray: 60 260;
+  filter: drop-shadow(0 0 5px var(--flow-color));
+}
+/* Senso ORARIO: sopra verso destra, sotto verso sinistra (versi opposti) */
+.flow-top   { animation: flowDash    var(--flow-speed) linear infinite; }
+.flow-bottom{ animation: flowDashRev var(--flow-speed) linear infinite; }
+@keyframes flowDash   { to{ stroke-dashoffset: -320; } }  /* segue il verso del tracciato */
+@keyframes flowDashRev{ to{ stroke-dashoffset:  320; } }  /* verso opposto */
+/* --- Le due card immagine --- */
+.flow-card{
+  position: absolute;
+  margin: 0;
+  z-index: 2;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 18px 40px rgba(0,0,0,.28);
+}
+.flow-card img{
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.flow-card--1{
+  top: 4%;
+  left: 6%;
+  width: 42%;
+  height: 62%;
+}
+.flow-card--2{
+  bottom: 2%;
+  right: 4%;
+  width: 46%;
+  height: 60%;
+}
+/* Rispetta chi ha ridotto le animazioni nel sistema */
+@media (prefers-reduced-motion: reduce){
+  .flow-move{ animation: none; }
+}
 </style>
 </head>
 <body class="bg-[#070e14] font-body-md text-on-surface antialiased selection:bg-cyan-500/30 selection:text-cyan-200">
