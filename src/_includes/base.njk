@@ -8,7 +8,8 @@
 <meta property="og:description" content="{{ description or 'Sviluppo siti web, web application e brand identity su misura per professionisti e piccole aziende.' }}"/>
 <meta property="og:image" content="images/og-cover.jpg"/>
 <meta property="og:url" content="https://digriisproject.it"/>
-<link rel="icon" type="image/png" href="images/favicon.png"/>
+<link rel="icon" type="image/png" href=".images/logo-digriisproject-black.png"/>
+<link rel="stylesheet" href="https://cloudflare.com" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">
   tailwind.config = {
     darkMode: "class",
@@ -224,29 +225,207 @@
     },
   }
 </script>
+<style>
+  /* Overlay menu mobile */
+  #mobile-menu {
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
+    background: radial-gradient(circle at 50% 0%, rgba(56,189,248,0.08), transparent 60%),
+                linear-gradient(180deg, #0a141b 0%, #070e14 100%);
+  }
+  .menu-hidden { transform: translateX(100%); opacity: 0; pointer-events: none; }
+  .menu-visible { transform: translateX(0); opacity: 1; pointer-events: auto; }
+
+  /* Reveal a cascata delle voci di menu */
+  #mobile-menu nav a,
+  #mobile-menu nav .menu-divider {
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+  .menu-visible nav a:nth-child(1) { transition-delay: 0.08s; }
+  .menu-visible nav a:nth-child(2) { transition-delay: 0.14s; }
+  .menu-visible nav a:nth-child(3) { transition-delay: 0.20s; }
+  .menu-visible nav a:nth-child(4) { transition-delay: 0.26s; }
+  .menu-visible nav .menu-divider { transition-delay: 0.30s; }
+  .menu-visible nav a:nth-child(6) { transition-delay: 0.34s; }
+  .menu-visible nav a:nth-child(7) { transition-delay: 0.38s; }
+  .menu-visible nav a,
+  .menu-visible nav .menu-divider {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Sottolineatura animata al hover/focus sulle voci */
+  #mobile-menu nav a.mobile-link {
+    position: relative;
+    display: inline-block;
+  }
+  #mobile-menu nav a.mobile-link::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -6px;
+    width: 0;
+    height: 2px;
+    background: #38bdf8;
+    transition: width 0.25s ease, left 0.25s ease;
+  }
+  #mobile-menu nav a.mobile-link:hover::after,
+  #mobile-menu nav a.mobile-link.active-link::after {
+    width: 40%;
+    left: 30%;
+  }
+
+</style>
 </head>
 <body class="bg-[#070e14] font-body-md text-on-surface antialiased selection:bg-cyan-500/30 selection:text-cyan-200">
-  
-  <header class="fixed top-0 left-0 right-0 z-50 bg-[#070e14]/85 backdrop-blur-md border-b border-slate-800/80 shadow-[0_4px_20px_rgba(0,0,0,0.5)]"><div class="h-20 max-w-7xl mx-auto px-margin md:px-margin-md lg:px-margin-lg flex items-center justify-between gap-gutter"><div class="flex items-center gap-space-md"><img alt="Digriisproject Logo" class="h-9 w-auto object-contain brightness-110 drop-shadow-[0_0_8px_rgba(56,189,248,0.25)]" src="images/logo-digriisproject-white.png"/><div class="flex flex-col"><span class="font-headline-sm text-headline-sm tracking-tight text-white leading-none uppercase font-extrabold">Digriisproject</span><span class="font-label-uppercase text-label-uppercase tracking-wider text-cyan-400 leading-tight mt-0.5">Innovate Web Solutions</span></div></div><nav class="hidden lg:flex items-center gap-1 xl:gap-2" data-active-classes="bg-slate-800/80 text-cyan-300 font-semibold rounded-lg border border-slate-700/60"><a aria-current="page" class="px-space-md py-space-sm transition-colors bg-slate-800/80 text-cyan-300 font-semibold rounded-lg border border-slate-700/60" data-path="home" href="#">Home</a>
-    <a class="px-space-md py-space-sm rounded-lg font-label-md text-label-md text-slate-300 hover:text-white hover:bg-slate-800/50 transition-colors" data-path="servizi" href="#servizi">Servizi</a><a class="px-space-md py-space-sm rounded-lg font-label-md text-label-md text-slate-300 hover:text-white hover:bg-slate-800/50 transition-colors" data-path="portfolio" href="/progetti/">Portfolio</a><a class="px-space-md py-space-sm rounded-lg font-label-md text-label-md text-slate-300 hover:text-white hover:bg-slate-800/50 transition-colors" data-path="contatti" href="#contatti">Contatti</a></nav><div class="flex items-center gap-space-sm">
-      
-      <a class="hidden sm:inline-flex items-center justify-center px-space-lg py-space-sm rounded-lg bg-[#486b85] text-white font-label-md text-label-md hover:bg-[#5b84a3] transition-all duration-200 shadow-[0_0_20px_rgba(72,107,133,0.35)] hover:-translate-y-0.5 border border-cyan-400/30" data-path="contatti" href="#contatti">Parla del tuo progetto</a>
-      
-      <a aria-label="WhatsApp Quick Contact" class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-slate-800 border border-slate-700 text-cyan-400 hover:bg-cyan-500/20 hover:text-cyan-300 transition-colors" href="https://wa.me/393208195521" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[20px]">chat</span></a>
-      
-   </div>
-</header>
-<main class="w-full pt-20 bg-[#070e14]"><div class="flex flex-col w-full">
 
+  <header class="fixed top-0 left-0 right-0 z-50 bg-[#070e14]/85 backdrop-blur-md border-b border-slate-800/80 shadow-[0_4px_20px_rgba(0,0,0,0.5)]">
+
+  <div class="h-20 max-w-7xl mx-auto px-margin md:px-margin-md lg:px-margin-lg flex items-center justify-between gap-gutter">
+    <!-- Logo -->
+    <div class="flex items-center gap-space-md">
+      <img alt="Digriisproject Logo" class="h-9 w-auto object-contain brightness-110 drop-shadow-[0_0_8px_rgba(56,189,248,0.25)]" src="/images/logo-digriisproject-white.png"/>
+      <div class="flex flex-col">
+        <span class="font-headline-sm text-headline-sm tracking-tight text-white leading-none uppercase font-extrabold">Digriisproject</span>
+        <span class="font-label-uppercase text-label-uppercase tracking-wider text-cyan-400 leading-tight mt-0.5">Innovate Web Solutions</span>
+      </div>
+    </div>
+
+    <!-- Desktop Navigation -->
+    <nav class="hidden lg:flex items-center gap-1 xl:gap-2">
+      {% set isHome = page.url == "/" %}
+      <a class="px-space-md py-space-sm rounded-lg font-label-md text-label-md transition-colors {{ 'bg-slate-800/80 text-cyan-300 font-semibold border border-slate-700/60' if isHome else 'text-slate-300 hover:text-white hover:bg-slate-800/50' }}" href="/">Home</a>
+
+      {% set isServices = page.url == "/servizi/" %}
+      <a class="px-space-md py-space-sm rounded-lg font-label-md text-label-md transition-colors {{ 'bg-slate-800/80 text-cyan-300 font-semibold border border-slate-700/60' if isServices else 'text-slate-300 hover:text-white hover:bg-slate-800/50' }}" href="/servizi/">Servizi</a>
+
+      {% set isPortfolio = page.url == "/progetti/" %}
+      <a class="px-space-md py-space-sm rounded-lg font-label-md text-label-md transition-colors {{ 'bg-slate-800/80 text-cyan-300 font-semibold border border-slate-700/60' if isPortfolio else 'text-slate-300 hover:text-white hover:bg-slate-800/50' }}" href="/progetti/">Portfolio</a>
+
+      {% set isContact = page.url == "/contatti/" %}
+      <a class="px-space-md py-space-sm rounded-lg font-label-md text-label-md transition-colors {{ 'bg-slate-800/80 text-cyan-300 font-semibold border border-slate-700/60' if isContact else 'text-slate-300 hover:text-white hover:bg-slate-800/50' }}" href="/contatti">Contatti</a>
+    </nav>
+
+    <!-- Right Side: CTA + WhatsApp + Hamburger -->
+    <div class="flex items-center gap-space-sm">
+
+      <!-- Desktop CTA -->
+      <a class="hidden sm:inline-flex items-center justify-center px-space-lg py-space-sm rounded-lg bg-[#486b85] text-white font-label-md text-label-md hover:bg-[#5b84a3] transition-all duration-200 shadow-[0_0_20px_rgba(72,107,133,0.35)] hover:-translate-y-0.5 border border-cyan-400/30" data-path="contatti" href="/contatti">Parla del tuo progetto</a>
+
+      <!-- Desktop WhatsApp -->
+      <a aria-label="WhatsApp Quick Contact" class="hidden sm:inline-flex items-center justify-center w-10 h-10 rounded-full bg-slate-800 border border-slate-700 text-cyan-400 hover:bg-cyan-500/20 hover:text-cyan-300 transition-colors" href="https://wa.me/393208195521" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[20px]">chat</span></a>
+
+      <!-- Hamburger Button (Mobile Only) -->
+      <button id="menu-toggle" class="lg:hidden p-2 text-slate-300 hover:text-white focus:outline-none" aria-label="Apri menu">
+        <span class="material-symbols-outlined text-[28px]">menu</span>
+      </button>
+   </div>
+  </div>
+
+</header>
+
+<!-- Mobile Menu Overlay (fuori dall'header per evitare che backdrop-blur lo intrappoli) -->
+<div id="mobile-menu" class="menu-hidden fixed inset-0 z-40 pt-24 px-6 lg:hidden flex flex-col items-center bg-gradient-to-b from-[#0a141b] to-[#070e14]">
+
+   <nav class="flex flex-col gap-5 text-center w-full max-w-xs">
+      {% set isHome = page.url == "/" %}
+      <a class="mobile-link {{ 'text-cyan-300 active-link' if isHome else 'text-slate-200' }} text-2xl font-headline-sm font-semibold hover:text-cyan-300 transition-colors" href="/">Home</a>
+
+      {% set isServices = page.url == "/servizi/" %}
+      <a class="mobile-link {{ 'text-cyan-300 active-link' if isServices else 'text-slate-200' }} text-2xl font-headline-sm font-semibold hover:text-cyan-300 transition-colors" href="/servizi/">Servizi</a>
+
+      {% set isPortfolio = page.url == "/progetti/" %}
+      <a class="mobile-link {{ 'text-cyan-300 active-link' if isPortfolio else 'text-slate-200' }} text-2xl font-headline-sm font-semibold hover:text-cyan-300 transition-colors" href="/progetti/">Portfolio</a>
+
+      {% set isContact = page.url == "/contatti/" %}
+      <a class="mobile-link {{ 'text-cyan-300 active-link' if isContact else 'text-slate-200' }} text-2xl font-headline-sm font-semibold hover:text-cyan-300 transition-colors" href="/contatti">Contatti</a>
+
+      <div class="menu-divider h-px bg-gradient-to-r from-transparent via-slate-700 to-transparent my-3"></div>
+
+      <a class="inline-flex items-center justify-center w-full py-3.5 rounded-lg bg-[#486b85] text-white font-label-md shadow-[0_0_24px_rgba(56,189,248,0.25)] border border-cyan-400/30 hover:bg-[#5b84a3] active:scale-[0.98] transition-all" href="/contatti">Parla del tuo progetto</a>
+      <a class="inline-flex items-center justify-center gap-2 w-full py-3.5 rounded-lg border border-slate-700 text-cyan-400 font-label-md hover:bg-slate-800/50 active:scale-[0.98] transition-all" href="https://wa.me/393208195521" rel="noopener noreferrer" target="_blank">
+        <span class="material-symbols-outlined text-[20px]">chat</span> WhatsApp
+      </a>
+    </nav>
+
+    <!-- Close Button -->
+    <button id="menu-close" class="mt-auto mb-10 p-3.5 rounded-full bg-slate-800/80 border border-slate-700 text-slate-400 hover:text-white hover:bg-slate-700 hover:rotate-90 transition-all duration-300" aria-label="Chiudi menu">
+      <span class="material-symbols-outlined text-[22px]">close</span>
+    </button>
+</div>
+
+<main class="w-full pt-20 bg-[#070e14]"><div class="flex flex-col w-full">
 {{ content | safe }}
-</div></main><footer class="w-full bg-[#04080c] border-t border-slate-800/80 text-slate-400 pt-space-3xl pb-space-2xl"><div class="max-w-7xl mx-auto px-margin md:px-margin-md lg:px-margin-lg"><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-gutter-lg pb-space-2xl"><div class="lg:col-span-5 flex flex-col gap-space-md"><div class="flex items-center gap-space-md"><img alt="Digriisproject Logo" class="h-9 w-auto object-contain brightness-110" src="images/logo-digriisproject-white.png"/><div class="flex flex-col"><span class="font-headline-sm text-headline-sm tracking-tight text-white uppercase font-extrabold">Digriisproject</span><span class="font-label-uppercase text-label-uppercase tracking-widest text-cyan-400">Alessandro Fogliada • Web Agency</span></div></div><p class="font-body-md text-body-md text-slate-400 max-w-md">Sviluppo web , architetture performanti e interfacce digitali ad alta conversione per brand e professionisti ambiziosi.</p><div class="flex items-center gap-space-sm text-slate-400 font-body-sm text-body-sm"><span class="material-symbols-outlined text-cyan-400 text-[18px]">location_on</span><span>Chiavenna (SO), Italia</span></div></div><div class="lg:col-span-3 flex flex-col gap-space-sm"><span class="font-label-uppercase text-label-uppercase text-cyan-300 tracking-wider uppercase mb-space-xs">Legal</span>
-  
+</div></main>
+
+<footer class="w-full bg-[#04080c] border-t border-slate-800/80 text-slate-400 pt-space-3xl pb-space-2xl"><div class="max-w-7xl mx-auto px-margin md:px-margin-md lg:px-margin-lg"><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-gutter-lg pb-space-2xl"><div class="lg:col-span-5 flex flex-col gap-space-md"><div class="flex items-center gap-space-md"><img alt="Digriisproject Logo" class="h-9 w-auto object-contain brightness-110" src="/images/logo-digriisproject-white.png"/><div class="flex flex-col"><span class="font-headline-sm text-headline-sm tracking-tight text-white uppercase font-extrabold">Digriisproject</span><span class="font-label-uppercase text-label-uppercase tracking-widest text-cyan-400">Alessandro Fogliada • Web Agency</span></div></div><p class="font-body-md text-body-md text-slate-400 max-w-md">Sviluppo web , architetture performanti e interfacce digitali ad alta conversione per brand e professionisti ambiziosi.</p><div class="flex items-center gap-space-sm text-slate-400 font-body-sm text-body-sm"><span class="material-symbols-outlined text-cyan-400 text-[18px]">location_on</span><span>Chiavenna (SO), Italia</span></div></div><div class="lg:col-span-3 flex flex-col gap-space-sm"><span class="font-label-uppercase text-label-uppercase text-cyan-300 tracking-wider uppercase mb-space-xs">Legal</span>
+
   <nav class="flex flex-col gap-space-xs">
     <a class="font-body-sm text-body-sm text-slate-400 hover:text-white transition-colors" data-path="servizi" href="#servizi">Privacy Policy</a>
     <a class="font-body-sm text-body-sm text-slate-400 hover:text-white transition-colors" data-path="portfolio" href="#portfolio">Cookie Policy</a>
-    
+
   </nav>
 
 </div><div class="lg:col-span-4 flex flex-col gap-space-md"><span class="font-label-uppercase text-label-uppercase text-cyan-300 tracking-wider uppercase">Inizia un Progetto</span><p class="font-body-sm text-body-sm text-slate-400">Hai un'idea digitale o desideri rinnovare la tua presenza web? Ricevi un riscontro dettagliato entro 24 ore.</p><div class="flex flex-col gap-space-xs"><a class="flex items-center gap-space-sm text-slate-400 hover:text-cyan-300 font-body-sm text-body-sm transition-colors" href="mailto:info@digriisproject.it"><span class="material-symbols-outlined text-[18px] text-cyan-400">mail</span><span>info@digriisproject.it</span></a><a class="flex items-center gap-space-sm text-slate-400 hover:text-cyan-300 font-body-sm text-body-sm transition-colors" href="tel:+393208195521"><span class="material-symbols-outlined text-[18px] text-cyan-400">call</span><span>+39 320 819 5521</span></a></div><div class="flex items-center gap-space-sm pt-space-xs"><a aria-label="LinkedIn" class="w-9 h-9 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-cyan-300 hover:border-slate-700 transition-colors" href="#"><span class="material-symbols-outlined text-[20px]">share</span></a><a aria-label="GitHub" class="w-9 h-9 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-cyan-300 hover:border-slate-700 transition-colors" href="#"><span class="material-symbols-outlined text-[20px]">terminal</span></a><a aria-label="Instagram" class="w-9 h-9 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-cyan-300 hover:border-slate-700 transition-colors" href="#"><span class="material-symbols-outlined text-[20px]">photo_camera</span></a><a aria-label="WhatsApp" class="w-9 h-9 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-cyan-300 hover:border-slate-700 transition-colors" href="https://wa.me/393208195521" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[20px]">send</span></a></div></div></div><div class="pt-space-lg border-t border-slate-800/80 flex flex-col md:flex-row items-center justify-between gap-space-md font-body-sm text-body-sm text-slate-500"><p>© Digriisproject 2026 | Alessandro Fogliada | P.IVA 01091240141</p><div class="flex items-center gap-space-md"><a class="hover:text-slate-300 transition-colors" data-path="privacy-policy" href="#">Privacy Policy</a><span class="text-slate-700">•</span><a class="hover:text-slate-300 transition-colors" data-path="cookie-policy" href="#">Cookie Policy</a><span class="text-slate-700">•</span><a class="hover:text-slate-300 transition-colors" data-path="note-legali" href="#">Note Legali</a></div></div></div></footer>
+
 <script src="/js/site.js"></script>
+
+<!-- Script per il Menu Mobile -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const menuToggle = document.getElementById('menu-toggle');
+    const menuClose = document.getElementById('menu-close');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuIcon = menuToggle.querySelector('.material-symbols-outlined');
+    const menuItems = mobileMenu.querySelectorAll('nav > *');
+    const body = document.body;
+
+    // Stato iniziale delle voci (nascoste, pronte per l'animazione)
+    menuItems.forEach(function(item) {
+      item.style.opacity = '0';
+      item.style.transform = 'translateY(12px)';
+      item.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+    });
+
+    function toggleMenu() {
+      const isHidden = mobileMenu.classList.contains('menu-hidden');
+      if (isHidden) {
+        // Apri
+        mobileMenu.classList.remove('menu-hidden');
+        mobileMenu.classList.add('menu-visible');
+        menuIcon.textContent = 'close';
+        body.style.overflow = 'hidden';
+
+        // Anima le voci in cascata
+        menuItems.forEach(function(item, index) {
+          setTimeout(function() {
+            item.style.opacity = '1';
+            item.style.transform = 'translateY(0)';
+          }, 80 + index * 60);
+        });
+      } else {
+        // Chiudi
+        mobileMenu.classList.remove('menu-visible');
+        mobileMenu.classList.add('menu-hidden');
+        menuIcon.textContent = 'menu';
+        body.style.overflow = '';
+
+        // Reset per la prossima apertura
+        menuItems.forEach(function(item) {
+          item.style.opacity = '0';
+          item.style.transform = 'translateY(12px)';
+        });
+      }
+    }
+
+    menuToggle.addEventListener('click', toggleMenu);
+    menuClose.addEventListener('click', toggleMenu);
+
+    const mobileLinks = mobileMenu.querySelectorAll('a');
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', toggleMenu);
+    });
+  });
+</script>
 </body></html>
