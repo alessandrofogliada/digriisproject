@@ -1,68 +1,117 @@
-    document.addEventListener('DOMContentLoaded', function () {
-      const filterBtns = document.querySelectorAll('.portfolio-filter-btn');
-      const items = document.querySelectorAll('.portfolio-item');
+document.addEventListener('DOMContentLoaded', function () {
 
-      filterBtns.forEach(btn => {
-        btn.addEventListener('click', function () {
-          const filter = this.getAttribute('data-filter');
+  /* =========================
+     PORTFOLIO FILTER
+  ========================= */
 
-          // Aggiorna classi bottoni
-          filterBtns.forEach(b => {
-            b.classList.remove('bg-[#486b85]', 'text-white', 'shadow-sm');
-            b.classList.add('text-slate-400');
-          });
-          this.classList.add('bg-[#486b85]', 'text-white', 'shadow-sm');
-          this.classList.remove('text-slate-400');
+  const filterBtns = document.querySelectorAll('.portfolio-filter-btn');
+  const items = document.querySelectorAll('.portfolio-item');
 
-          // Filtra elementi
-          items.forEach(item => {
-            const categories = item.getAttribute('data-category') || '';
-            if (filter === 'all' || categories.includes(filter)) {
-              item.style.display = 'flex';
-            } else {
-              item.style.display = 'none';
-            }
-          });
-        });
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', function () {
+
+      const filter = this.dataset.filter;
+
+      // Stato visuale pulsanti
+      filterBtns.forEach(b => {
+        b.classList.remove(
+          'bg-[#486b85]',
+          'text-white',
+          'shadow-sm'
+        );
+
+        b.classList.add('text-slate-400');
       });
 
-      // Invio reale del form di contatto tramite FormSubmit.co (nessun backend necessario)
-      const contactForm = document.getElementById('contact-form');
-      const statusBox = document.getElementById('contact-status');
-      const errorBox = document.getElementById('contact-error');
+      this.classList.add(
+        'bg-[#486b85]',
+        'text-white',
+        'shadow-sm'
+      );
 
-      if (contactForm) {
-        contactForm.addEventListener('submit', async function (e) {
-          e.preventDefault();
-          statusBox.classList.add('hidden');
-          errorBox.classList.add('hidden');
+      this.classList.remove('text-slate-400');
 
-          const submitBtn = contactForm.querySelector('button[type="submit"]');
-          const originalBtnHtml = submitBtn.innerHTML;
-          submitBtn.disabled = true;
-          submitBtn.innerHTML = '<span>Invio in corso...</span>';
+      // Filtra progetti
+      items.forEach(item => {
 
-          try {
-            const formData = new FormData(contactForm);
-            // ⚠️ Sostituisci l'indirizzo email qui sotto con la tua email reale se diversa
-            const response = await fetch('https://formsubmit.co/ajax/info@digriisproject.it', {
-              method: 'POST',
-              headers: { 'Accept': 'application/json' },
-              body: formData
-            });
+        const categories = (
+          item.dataset.category || ''
+        ).split(/\s+/);
 
-            if (response.ok) {
-              statusBox.classList.remove('hidden');
-              contactForm.reset();
-            } else {
-              throw new Error('Invio fallito');
-            }
-          } catch (err) {
-            errorBox.classList.remove('hidden');
-          } finally {
-            submitBtn.disabled = false;
-            submitBtn.innerHTML = originalBtnHtml;
-          }
-        });
-      }
+        const visible =
+          filter === 'all' ||
+          categories.includes(filter);
+
+        item.style.display = visible ? 'flex' : 'none';
+      });
     });
+  });
+
+
+  /* =========================
+     FORM CONTATTI
+  ========================= */
+
+  const contactForm = document.getElementById('contact-form');
+  const statusBox = document.getElementById('contact-status');
+  const errorBox = document.getElementById('contact-error');
+
+  if (contactForm) {
+
+    contactForm.addEventListener('submit', async function (e) {
+
+      e.preventDefault();
+
+      statusBox.classList.add('hidden');
+      errorBox.classList.add('hidden');
+
+      const submitBtn =
+        contactForm.querySelector('button[type="submit"]');
+
+      const originalBtnHtml = submitBtn.innerHTML;
+
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<span>Invio in corso...</span>';
+
+      try {
+
+        const formData = new FormData(contactForm);
+
+        const response = await fetch(
+          'https://formsubmit.co/ajax/info@digriisproject.it',
+          {
+            method: 'POST',
+            headers: {
+              'Accept': 'application/json'
+            },
+            body: formData
+          }
+        );
+
+        if (response.ok) {
+
+          statusBox.classList.remove('hidden');
+          contactForm.reset();
+
+        } else {
+
+          throw new Error('Invio fallito');
+
+        }
+
+      } catch (err) {
+
+        errorBox.classList.remove('hidden');
+
+      } finally {
+
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnHtml;
+
+      }
+
+    });
+
+  }
+
+});

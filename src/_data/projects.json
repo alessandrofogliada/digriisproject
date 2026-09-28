@@ -2,46 +2,376 @@
   {
     "slug": "home-immobiliare",
     "title": "Home Immobiliare — Portale &amp; Sync Immobili",
-    "categories": ["web-design", "web-solution"],
-    "badge": "Sito &amp; Gestionale",
+    "categories": [
+      "web-design"
+    ],
+    "badge": "Sito &amp; Sincronizzazione con Gestionale",
     "metaLeft": "Settore Real Estate",
     "metaRight": "Sincronizzazione Automatica",
     "description": "Progettazione da zero del portale immobiliare con architettura ad alta velocità, ricerca filtri avanzata e sincronizzazione automatica degli annunci da database gestionale esterno.",
-    "tags": ["Architettura Web", "Custom API", "SEO Locale"],
+    "tags": [
+      "Architettura Web",
+      "Custom API",
+      "SEO Locale"
+    ],
     "location": "Chiavenna (SO)",
-    "image": "images/portfolio/home-immobiliare.jpg",
+    "image": "images/home-immobiliare.webp",
     "imageAlt": "Mockup del portale immobiliare Home Immobiliare su schermo desktop",
     "featured": true,
-    "order": 1
+    "order": 1,
+    "url": "https://homeimmobiliare.info/"
   },
   {
     "slug": "teloni-piccapietra",
     "title": "Teloni Piccapietra — Restyling Portale &amp; Video Drone",
-    "categories": ["web-design"],
+    "categories": [
+      "web-design"
+    ],
     "badge": "Restyling &amp; Media",
     "metaLeft": "Industria &amp; Manifattura",
     "metaRight": "Drone Storytelling",
     "description": "Restyling completo del portale web aziendale, valorizzazione visiva con riprese aeree e catalogazione tecnica di teloni industriali e coperture speciali ad alte prestazioni.",
-    "tags": ["Nuova UI/UX", "Ottimizzazione Mobile", "Video Integration"],
+    "tags": [
+      "Nuova UI/UX",
+      "Ottimizzazione Mobile",
+      "Video Integration"
+    ],
     "location": "Morbegno / Sondrio",
-    "image": "images/portfolio/teloni-piccapietra.jpg",
+    "image": "images/teloni-piccapietra.webp",
     "imageAlt": "Sito web aziendale di Teloni Piccapietra con foto drone",
     "featured": true,
-    "order": 2
+    "order": 2,
+    "url": "https://telonipiccapietra.it/"
   },
   {
     "slug": "proloco-morbegno",
     "title": "Pro Loco Morbegno — Portale Turistico &amp; Eventi",
-    "categories": ["web-design", "web-solution"],
+    "categories": [
+      "web-design"
+    ],
     "badge": "Turismo &amp; Eventi",
     "metaLeft": "Promozione Territoriale",
     "metaRight": "CMS Autonomo",
     "description": "Piattaforma dinamica per la valorizzazione del territorio valtellinese, con sistema di pubblicazione autonoma di calendari manifestazioni, mostre d'arte e rassegne gastronomiche.",
-    "tags": ["Gestione Eventi", "Multi-autore", "Velocità &lt;1s"],
+    "tags": [
+      "Gestione Eventi",
+      "Multi-autore",
+      "Velocità &lt;1s"
+    ],
     "location": "Morbegno (SO)",
-    "image": "images/portfolio/proloco-morbegno.jpg",
+    "image": "images/logo-proloco-morbegno.webp",
     "imageAlt": "Portale turistico ed eventi di Pro Loco Morbegno",
     "featured": true,
-    "order": 3
+    "order": 3,
+    "url": "https://www.prolocomorbegno.it/"
+  },
+  {
+    "slug": "lashology-lash-artist",
+    "title": "Lashology — Lash Artist",
+    "categories": [
+      "web-design"
+    ],
+    "badge": "E-commerce &amp; E-learning",
+    "metaLeft": "Beauty &amp; Formazione",
+    "metaRight": "Piattaforma E-learning",
+    "description": "Piattaforma integrata che combina un e-commerce avanzato per prodotti da lashmaker con un portale e-learning strutturato, per l'erogazione automatizzata di corsi professionali online.",
+    "tags": [
+      "E-commerce",
+      "Area Membri",
+      "Video On-Demand"
+    ],
+    "location": "Italia",
+    "image": "images/lashology-lash-artist.webp",
+    "imageAlt": "Homepage del sito Lashology con shop e area corsi online",
+    "featured": false,
+    "order": 4,
+    "url": "https://lashology.it/"
+  },
+  {
+    "slug": "agriturismo-la-campagnola",
+    "title": "Agriturismo — La Campagnola",
+    "categories": [
+      "web-app"
+    ],
+    "badge": "Menu Digitale",
+    "metaLeft": "Ristorazione &amp; Turismo",
+    "metaRight": "Gestione Multilingua",
+    "description": "Web app per menu digitale accessibile tramite QR code, con architettura multilingua e pannello di controllo che permette al personale di aggiornare piatti e prezzi in autonomia e in tempo reale.",
+    "tags": [
+      "QR Code",
+      "Multilingua",
+      "Aggiornamento Autonomo"
+    ],
+    "location": "Italia",
+    "image": "images/agriturismo-la-campagnola.webp",
+    "imageAlt": "Web app del menu digitale di Agriturismo La Campagnola su smartphone",
+    "featured": false,
+    "order": 13,
+    "url": "https://lacampagnola-menudigitale.netlify.app/"
+  },
+  {
+    "slug": "bar-dolzino-dal-pipa",
+    "title": "Bar — Dolzino Dal Pipa",
+    "categories": [
+      "web-app"
+    ],
+    "badge": "Menu Digitale",
+    "metaLeft": "Bar &amp; Ristorazione",
+    "metaRight": "Consultazione Rapida",
+    "description": "Web app ultra-leggera ottimizzata per la scansione tramite QR code, con interfaccia multilingua focalizzata su leggibilità da smartphone e aggiornamento immediato dei contenuti del menu.",
+    "tags": [
+      "QR Code",
+      "Multilingua",
+      "Ultra-leggero"
+    ],
+    "location": "Italia",
+    "image": "images/bar-dolzino-dal-pipa.webp",
+    "imageAlt": "Web app del menu digitale del Bar Dolzino Dal Pipa",
+    "featured": false,
+    "order": 6,
+    "url": "https://dolzino-dalpipa-menudigitale.netlify.app/"
+  },
+  {
+    "slug": "fotografa-serena-morandi",
+    "title": "Fotografa — Serena Morandi",
+    "categories": [
+      "web-design"
+    ],
+    "badge": "Portfolio Fotografico",
+    "metaLeft": "Fotografia di Ritratto",
+    "metaRight": "Design Minimale",
+    "description": "Portfolio digitale dall'anima minimale ed elegante, con navigazione fluida che mette le gallerie fotografiche al centro dell'esperienza utente e responsive ottimizzato su ogni dispositivo.",
+    "tags": [
+      "Galleria Immagini",
+      "Design Minimale",
+      "Responsive"
+    ],
+    "location": "Italia",
+    "image": "images/fotografa-serena-morandi.webp",
+    "imageAlt": "Portfolio online della fotografa Serena Morandi",
+    "featured": false,
+    "order": 7,
+    "url": "https://serenastorievisive.it/"
+  },
+  {
+    "slug": "fotografo-gabriele-corbellini",
+    "title": "Fotografo — Gabriele Corbellini",
+    "categories": [
+      "web-design"
+    ],
+    "badge": "Portfolio &amp; Shop Stampe",
+    "metaLeft": "Fotografia Naturalistica",
+    "metaRight": "Vendita Stampe Online",
+    "description": "Sito dal design minimal con modulo di prenotazione personalizzato per la vendita di stampe fotografiche e sezione interattiva dedicata alle collaborazioni professionali del fotografo.",
+    "tags": [
+      "E-commerce Leggero",
+      "Modulo Preventivi",
+      "Portfolio Responsive"
+    ],
+    "location": "Italia",
+    "image": "images/fotografo-gabriele-corbellini.webp",
+    "imageAlt": "Portfolio online del fotografo Gabriele Corbellini",
+    "featured": true,
+    "order": 8,
+    "url": "https://gabrielecorbellini.com/"
+  },
+  {
+    "slug": "il-torchio-antico",
+    "title": "Il Torchio Antico",
+    "categories": [
+      "web-design"
+    ],
+    "badge": "Sito Vetrina",
+    "metaLeft": "Nuova Apertura Ristorante",
+    "metaRight": "Prenotazioni Online",
+    "description": "Prima identità digitale del ristorante in occasione della nuova apertura: vetrina online che valorizza l'offerta gastronomica e un sistema rapido per ricevere prenotazioni e contatti.",
+    "tags": [
+      "Prenotazioni Online",
+      "Menu Digitale",
+      "Nuova Apertura"
+    ],
+    "location": "Italia",
+    "image": "images/logo-torchio-antico.webp",
+    "imageAlt": "Logo-Torchio-Antico-2025.webp",
+    "featured": false,
+    "order": 9,
+    "url": "https://iltorchioanticovalchiavenna.com/"
+  },
+  {
+    "slug": "ristorante-il-torchio-antico",
+    "title": "Ristorante — Il Torchio Antico",
+    "categories": [
+      "web-app"
+    ],
+    "badge": "Menu Digitale",
+    "metaLeft": "Ristorazione",
+    "metaRight": "Gestione in Tempo Reale",
+    "description": "Web app dedicata per la consultazione rapida del menu da smartphone tramite QR code, con architettura multilingua e pannello di controllo per l'aggiornamento autonomo dell'offerta gastronomica.",
+    "tags": [
+      "QR Code",
+      "Multilingua",
+      "Aggiornamento Autonomo"
+    ],
+    "location": "Italia",
+    "image": "images/logo-torchio-antico.webp",
+    "imageAlt": "Web app del menu digitale del Ristorante Il Torchio Antico",
+    "featured": false,
+    "order": 10,
+    "url": "https://iltorchioantico-menudigitale.netlify.app/"
+  },
+  {
+    "slug": "la-meridiana-casa-vacanza",
+    "title": "La Meridiana — Casa Vacanza",
+    "categories": [
+      "web-design"
+    ],
+    "badge": "Restyling &amp; SEO",
+    "metaLeft": "Turismo &amp; Alloggi",
+    "metaRight": "Doppio Calendario",
+    "description": "Trasformazione di un sito statico in strumento di vendita dinamico: integrazione di un secondo motore di prenotazione, traduzioni professionali e gestione automatizzata di cookie e privacy policy.",
+    "tags": [
+      "Multilingua",
+      "Doppio Calendario",
+      "SEO"
+    ],
+    "location": "Italia",
+    "image": "images/la-meridian-vacanza.avif",
+    "imageAlt": "Homepage del sito La Meridiana Casa Vacanza",
+    "featured": false,
+    "order": 17,
+    "url": "https://www.casavacanzalameridiana.it/"
+  },
+  {
+    "slug": "romano-topgartenbau",
+    "title": "Romano TopGartenBau",
+    "categories": [
+      "web-design"
+    ],
+    "badge": "Sito Vetrina Multilingua",
+    "metaLeft": "Manutenzione Giardini",
+    "metaRight": "Mercato Svizzero",
+    "description": "Prima presenza digitale dell'azienda: sito web solido e intuitivo con architettura multilingua per il territorio svizzero e sistemi di contatto rapido per trasformare i visitatori in clienti.",
+    "tags": [
+      "Sito Multilingua",
+      "Prima Presenza Digitale",
+      "Mercato Svizzero"
+    ],
+    "location": "Svizzera / Italia",
+    "image": "images/romano-topgartenbau.webp",
+    "imageAlt": "Homepage del sito web di Romano TopGartenBau",
+    "featured": false,
+    "order": 12,
+    "url": "https://romano-topgartenbau.ch/"
+  },
+  {
+    "slug": "chiosco-kwatras",
+    "title": "Chiosco Kwatras — Menu Digitale & Multilingua",
+    "categories": [
+      "web-app",
+      "web-design"
+    ],
+    "badge": "Menu Interattivo & Eventi",
+    "metaLeft": "Settore Turismo & Food",
+    "metaRight": "Rilevamento Lingua Automatico",
+    "description": "Sito web multilingue per chiosco turistico con rilevamento automatico della lingua del dispositivo. Include slider eventi, galleria fotografica per le pietanze, CTA dirette per WhatsApp e Instagram e pannello autonomo per la modifica del menu in tempo reale.",
+    "tags": [
+      "Multilingua",
+      "UX Turistica",
+      "Gestione Autonoma"
+    ],
+    "location": "Chiavenna (SO)",
+    "image": "images/Logo-kwatras.webp",
+    "imageAlt": "Interfaccia del menu digitale del Chiosco Kwatras su dispositivo mobile",
+    "featured": true,
+    "order": 5,
+    "url": "https://menu-kiosk-kwatras.netlify.app/"
+  },
+  {
+    "slug": "casa-vacanza-belcolle",
+    "title": "Casa Vacanza Belcolle — Sito Vetrina & Prenotazioni",
+    "categories": [
+      "web-design"
+    ],
+    "badge": "Sviluppo & Brand Identity",
+    "metaLeft": "Settore Hospitality",
+    "metaRight": "Consegna in 3 Settimane",
+    "description": "Sito vetrina per struttura ricettiva con showcase delle stanze e sistema di prenotazione diretto via WhatsApp ed Email. Progetto realizzato in collaborazione con Bigais Design per la grafica, sviluppando il codice in tempi rapidi sulla base della brand identity fornita dal cliente.",
+    "tags": [
+      "Sviluppo Rapido",
+      "Collaborazione Design",
+      "Booking Diretto"
+    ],
+    "location": "Valchiavenna",
+    "image": "images/belcolle-chiavenna.webp",
+    "imageAlt": "Vista del sito web di Casa Vacanza Belcolle su desktop e mobile",
+    "featured": true,
+    "order": 14,
+    "url": "https://belcollechiavenna.it/"
+  },
+  {
+    "slug": "bar-povero-diavolo",
+    "title": "Bar Povero Diavolo — Menu Digitale Smart",
+    "categories": [
+      "web-app"
+    ],
+    "badge": "Menu Multilingua Automatico",
+    "metaLeft": "Settore Ristorazione",
+    "metaRight": "Auto-rilevamento Lingua",
+    "description": "Soluzione digitale per la somministrazione di menu in bar. Il sito rileva automaticamente la lingua dello smartphone del cliente, offrendo un'esperienza utente localizzata. Include contatti rapidi per lo staff e gestione autonoma delle voci di menu da parte del proprietario.",
+    "tags": [
+      "Automazione",
+      "Multilingua",
+      "User Friendly"
+    ],
+    "location": "Chiavenna (SO)",
+    "image": "images/logo-povero-diavolo.webp",
+    "imageAlt": "Schermata del menu digitale del Bar Povero Diavolo",
+    "featured": false,
+    "order": 15,
+    "url": "https://povero-diavolo-menu-digitale.netlify.app/"
+  },
+  {
+    "slug": "fonderia-morri",
+    "title": "Fonderia Morri — Sito Istituzionale & Servizi",
+    "categories": [
+      "web-design"
+    ],
+    "badge": "Sviluppo su Design Esterno",
+    "metaLeft": "Settore Industriale",
+    "metaRight": "Collaborazione Improve Studio",
+    "description": "Sito vetrina aziendale realizzato in collaborazione con Improve Studio (responsabili del design). Il progetto illustra la storia dell'azienda, i servizi offerti e include un modulo di contatto dedicato per le richieste di preventivo via email.",
+    "tags": [
+      "Sviluppo Front-end",
+      "Design Industriale",
+      "Lead Generation"
+    ],
+    "location": "Italia",
+    "image": "images/logo-fonderia-morri.webp",
+    "imageAlt": "Homepage del sito istituzionale Fonderia Morri",
+    "featured": false,
+    "order": 16,
+    "url": "https://www.fonderiamorri.it/"
+  },
+  {
+    "slug": "il-mondo-che-vorrei",
+    "title": "Il Mondo Che Vorrei — Restyling Sito ODV",
+    "categories": [
+      "web-design"
+    ],
+    "badge": "Restyling & Comunicazione Sociale",
+    "metaLeft": "Organizzazione No Profit",
+    "metaRight": "Nuova Identità Digitale",
+    "description": "Restyling completo del sito web per l'organizzazione di volontariato. La nuova piattaforma descrive in modo chiaro le aree di intervento e le attività dell'ODV, facilitando i contatti tramite form dedicato e integrazione diretta con i canali social.",
+    "tags": [
+      "Restyling",
+      "No Profit",
+      "Integrazione Social"
+    ],
+    "location": "Italia",
+    "image": "images/il-mondo-che-vorrei.webp",
+    "imageAlt": "Nuova homepage del sito Il Mondo Che Vorrei ODV",
+    "featured": false,
+    "order": 18,
+    "url": "https://odvsit.wixsite.com/ilmondochevorrei"
   }
 ]
