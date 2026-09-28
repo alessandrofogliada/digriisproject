@@ -1,4 +1,4 @@
-<a href="/progetti/{{ project.slug }}/" class="portfolio-item group flex flex-col rounded-xl overflow-hidden bg-slate-900/80 border border-slate-800 hover:border-[#486b85] hover:shadow-[0_0_30px_rgba(72,107,133,0.3)] transition-all duration-300 block" data-category="{{ project.categories | join(' ') }}">
+<a href="{{ project.url }}" target="_blank" rel="noopener noreferrer" class="portfolio-item group flex flex-col rounded-xl overflow-hidden bg-slate-900/80 border border-slate-800 hover:border-[#486b85] hover:shadow-[0_0_30px_rgba(72,107,133,0.3)] transition-all duration-300 block" data-category="{{ project.categories | join(' ') }}">
   <div class="relative w-full h-64 overflow-hidden bg-slate-950">
     <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="{{ project.imageAlt }}" src="/{{ project.image }}"/>
     <div class="absolute top-4 left-4 flex gap-2">

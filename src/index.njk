@@ -358,6 +358,8 @@ layout: base.njk
   .arc-track { display:flex; gap:1rem; overflow-x:auto; scroll-snap-type:x mandatory; padding:0 1.5rem 1.5rem; scrollbar-width:none; }
   .arc-slot { flex:0 0 68%; scroll-snap-align:center; }
   .arc-card { width:100%; aspect-ratio:3/4.3; }
+  /* Mobile: immagine intera, non ritagliata (zoom indietro) */
+  .arc-stage:not(.arc-live) .arc-card img { object-fit:contain; object-position:center; }
   .arc-stage:not(.arc-anim) .arc-slot[data-clone] { display:none; }
 
   /* Desktop: arco 3D (centro più piccolo, lati più grandi).
@@ -416,7 +418,7 @@ layout: base.njk
     {% for project in featuredProjects %}
     <div class="arc-slot">
     <!-- Quando esisteranno le pagine di dettaglio: href="/progetti/{{ project.slug }}/" -->
-    <a href="/progetti/" class="arc-card group relative block rounded-2xl overflow-hidden border border-slate-700/60 bg-slate-950 shadow-2xl shadow-black/60" style="background:white;" aria-label="{{ project.title | striptags | safe }}">
+    <a href="{{ project.url }}" target="_blank" rel="noopener noreferrer" class="arc-card group relative block rounded-2xl overflow-hidden border border-slate-700/60 bg-slate-950 shadow-2xl shadow-black/60" style="background:white;" aria-label="{{ project.title | striptags | safe }}">
       <img class="absolute inset-0 w-full h-full object-cover object-top" src="{{ project.image }}" alt="{{ project.imageAlt }}" loading="lazy"/>
       <div class="absolute inset-x-0 bottom-0 p-4 pt-16 bg-gradient-to-t from-black/90 via-black/50 to-transparent">
         <span class="inline-block mb-1.5 px-2 py-0.5 rounded bg-slate-950/80 border border-slate-700/60 text-cyan-300 font-label-uppercase text-label-uppercase">{{ project.badge | safe }}</span>
@@ -600,5 +602,3 @@ layout: base.njk
   </div>
   </div>
   </section>
-
-

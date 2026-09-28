@@ -5,7 +5,7 @@
     "categories": [
       "web-design"
     ],
-    "badge": "Sito &amp; Sincronizzazione con Gestionale",
+    "badge": "Sito &amp; Sync con Gestionale",
     "metaLeft": "Settore Real Estate",
     "metaRight": "Sincronizzazione Automatica",
     "description": "Progettazione da zero del portale immobiliare con architettura ad alta velocità, ricerca filtri avanzata e sincronizzazione automatica degli annunci da database gestionale esterno.",
@@ -16,7 +16,7 @@
     ],
     "location": "Chiavenna (SO)",
     "image": "images/home-immobiliare.webp",
-    "imageAlt": "Mockup del portale immobiliare Home Immobiliare su schermo desktop",
+    "imageAlt": "Mockup del agenzia Home Immobiliare su schermo desktop",
     "featured": true,
     "order": 1,
     "url": "https://homeimmobiliare.info/"
@@ -27,16 +27,16 @@
     "categories": [
       "web-design"
     ],
-    "badge": "Restyling &amp; Media",
+    "badge": "Restyling &amp; Form preventivo avanzato",
     "metaLeft": "Industria &amp; Manifattura",
     "metaRight": "Drone Storytelling",
-    "description": "Restyling completo del portale web aziendale, valorizzazione visiva con riprese aeree e catalogazione tecnica di teloni industriali e coperture speciali ad alte prestazioni.",
+    "description": "Restyling completo del portale web aziendale, form preventivo avanzato , valorizzazione visiva con riprese aeree e catalogazione tecnica di teloni industriali e coperture speciali ad alte prestazioni.",
     "tags": [
       "Nuova UI/UX",
       "Ottimizzazione Mobile",
       "Video Integration"
     ],
-    "location": "Morbegno / Sondrio",
+    "location": "Colico / Sondrio",
     "image": "images/teloni-piccapietra.webp",
     "imageAlt": "Sito web aziendale di Teloni Piccapietra con foto drone",
     "featured": true,
@@ -80,12 +80,35 @@
       "Area Membri",
       "Video On-Demand"
     ],
-    "location": "Italia",
+    "location": "Gravedona",
     "image": "images/lashology-lash-artist.webp",
     "imageAlt": "Homepage del sito Lashology con shop e area corsi online",
     "featured": false,
     "order": 4,
     "url": "https://lashology.it/"
+  },
+  {
+    "slug": "chiosco-kwatras",
+    "title": "Chiosco Kwatras — Menu Digitale & Multilingua",
+    "categories": [
+      "web-app",
+      "web-design"
+    ],
+    "badge": "Menu Interattivo & Eventi",
+    "metaLeft": "Settore Turismo & Food",
+    "metaRight": "Rilevamento Lingua Automatico",
+    "description": "Sito web multilingue per chiosco turistico con rilevamento automatico della lingua del dispositivo. Include slider eventi, galleria fotografica per le pietanze, CTA dirette per WhatsApp e Instagram e pannello autonomo per la modifica del menu in tempo reale.",
+    "tags": [
+      "Multilingua",
+      "UX Turistica",
+      "Gestione Autonoma"
+    ],
+    "location": "Chiavenna (SO)",
+    "image": "images/Logo-kwatras.webp",
+    "imageAlt": "Interfaccia del menu digitale del Chiosco Kwatras su dispositivo mobile",
+    "featured": true,
+    "order": 5,
+    "url": "https://menu-kiosk-kwatras.netlify.app/"
   },
   {
     "slug": "agriturismo-la-campagnola",
@@ -108,6 +131,28 @@
     "featured": false,
     "order": 13,
     "url": "https://lacampagnola-menudigitale.netlify.app/"
+  },
+  {
+    "slug": "il-torchio-antico",
+    "title": "Il Torchio Antico",
+    "categories": [
+      "web-design"
+    ],
+    "badge": "Sito Vetrina",
+    "metaLeft": "Nuova Apertura Ristorante",
+    "metaRight": "Prenotazioni Online",
+    "description": "Prima identità digitale del ristorante in occasione della nuova apertura: vetrina online che valorizza l'offerta gastronomica e un sistema rapido per ricevere prenotazioni e contatti.",
+    "tags": [
+      "Prenotazioni Online",
+      "Menu Digitale",
+      "Nuova Apertura"
+    ],
+    "location": "Italia",
+    "image": "images/logo-torchio-antico.webp",
+    "imageAlt": "Logo-Torchio-Antico-2025.webp",
+    "featured": false,
+    "order": 9,
+    "url": "https://iltorchioanticovalchiavenna.com/"
   },
   {
     "slug": "bar-dolzino-dal-pipa",
@@ -176,28 +221,6 @@
     "url": "https://gabrielecorbellini.com/"
   },
   {
-    "slug": "il-torchio-antico",
-    "title": "Il Torchio Antico",
-    "categories": [
-      "web-design"
-    ],
-    "badge": "Sito Vetrina",
-    "metaLeft": "Nuova Apertura Ristorante",
-    "metaRight": "Prenotazioni Online",
-    "description": "Prima identità digitale del ristorante in occasione della nuova apertura: vetrina online che valorizza l'offerta gastronomica e un sistema rapido per ricevere prenotazioni e contatti.",
-    "tags": [
-      "Prenotazioni Online",
-      "Menu Digitale",
-      "Nuova Apertura"
-    ],
-    "location": "Italia",
-    "image": "images/logo-torchio-antico.webp",
-    "imageAlt": "Logo-Torchio-Antico-2025.webp",
-    "featured": false,
-    "order": 9,
-    "url": "https://iltorchioanticovalchiavenna.com/"
-  },
-  {
     "slug": "ristorante-il-torchio-antico",
     "title": "Ristorante — Il Torchio Antico",
     "categories": [
@@ -262,29 +285,6 @@
     "featured": false,
     "order": 12,
     "url": "https://romano-topgartenbau.ch/"
-  },
-  {
-    "slug": "chiosco-kwatras",
-    "title": "Chiosco Kwatras — Menu Digitale & Multilingua",
-    "categories": [
-      "web-app",
-      "web-design"
-    ],
-    "badge": "Menu Interattivo & Eventi",
-    "metaLeft": "Settore Turismo & Food",
-    "metaRight": "Rilevamento Lingua Automatico",
-    "description": "Sito web multilingue per chiosco turistico con rilevamento automatico della lingua del dispositivo. Include slider eventi, galleria fotografica per le pietanze, CTA dirette per WhatsApp e Instagram e pannello autonomo per la modifica del menu in tempo reale.",
-    "tags": [
-      "Multilingua",
-      "UX Turistica",
-      "Gestione Autonoma"
-    ],
-    "location": "Chiavenna (SO)",
-    "image": "images/Logo-kwatras.webp",
-    "imageAlt": "Interfaccia del menu digitale del Chiosco Kwatras su dispositivo mobile",
-    "featured": true,
-    "order": 5,
-    "url": "https://menu-kiosk-kwatras.netlify.app/"
   },
   {
     "slug": "casa-vacanza-belcolle",
