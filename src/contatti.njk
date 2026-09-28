@@ -24,7 +24,7 @@ permalink: "/contatti/"
     
     <!-- Sottotitolo -->
     <p class="text-base sm:text-lg text-slate-400 max-w-2xl mx-auto font-normal leading-relaxed mb-8">
-      Dal primo incontro alla messa online: trasparenza tecnica, ascolto concreto e supporto diretto per artigiani, professionisti ed aziende.
+      Dal primo caffè a Chiavenna alla messa online: trasparenza tecnica, ascolto concreto e supporto diretto per artigiani, professionisti e PMI ambiziose.
     </p>
     
     <!-- Metriche -->
@@ -188,37 +188,47 @@ C 244 460, 250 460, 278 460" />
     
     <!-- Galleria progetti: stessa galleria ad arco della homepage -->
     <style>
-      .arc-track { display:flex; gap:1rem; overflow-x:auto; scroll-snap-type:x mandatory; padding:0 1.5rem 1.5rem; scrollbar-width:none; }
-      .arc-slot { flex:0 0 68%; scroll-snap-align:center; }
-      .arc-card { width:100%; aspect-ratio:3/4.3; }
-      .arc-stage:not(.arc-live) .arc-card img { object-fit:contain; object-position:center; }
-      .arc-stage:not(.arc-anim) .arc-slot[data-clone] { display:none; }
+  /* Fallback senza JS: fila orizzontale scorribile */
+  .arc-track { display:flex; gap:1rem; overflow-x:auto; scroll-snap-type:x mandatory; padding:0 1.5rem 1.5rem; scrollbar-width:none; }
+  .arc-slot { flex:0 0 68%; scroll-snap-align:center; }
+  .arc-card { width:100%; aspect-ratio:3/4.3; }
+  .arc-stage:not(.arc-live) .arc-card img { object-fit:contain; object-position:center; }
+  .arc-stage:not(.arc-anim) .arc-slot[data-clone] { display:none; }
 
-      .arc-live { --w: clamp(170px, 16vw, 240px); }
-      .arc-live .arc-track {
-        display:block; position:relative; overflow:visible; scroll-snap-type:none; padding:0;
-        width:100%; height:calc(var(--w) * 4.3 / 3 + 7rem);
-        perspective:1400px; transform-style:preserve-3d;
-      }
-      .arc-live .arc-slot {
-        --off:0; --abs:0;
-        position:absolute; top:3rem; left:50%; flex:none;
-        width:var(--w); margin-left:calc(var(--w) / -2);
-        transform-style:preserve-3d;
-        transform: translateX(calc(var(--off) * (var(--w) + 1.25rem)))
-                   translateZ(calc(var(--abs) * 70px))
-                   rotateY(calc(var(--off) * -16deg));
-      }
-      .arc-live .arc-card {
-        backface-visibility:hidden;
-        filter: brightness(max(0.4, calc(1 - var(--abs) * 0.1)));
-        transition: transform .5s cubic-bezier(.2,.8,.2,1);
-      }
-      .arc-live .arc-card:hover, .arc-live .arc-card:focus-visible {
-        transform: rotateY(calc(var(--off) * 16deg)) translateZ(80px) scale(1.04);
-        filter:none;
-      }
-    </style>
+  /* Arco 3D (centro più piccolo, lati più grandi) — mobile e desktop.
+     Le posizioni (--off = distanza dal centro in "card") le aggiorna lo script in fondo alla sezione. */
+  .arc-stage { --w: clamp(110px, 30vw, 150px); }
+  @media (min-width:768px) { .arc-stage { --w: clamp(170px, 16vw, 240px); } }
+  .arc-live { cursor: grab; }
+  .arc-live.is-dragging { cursor: grabbing; }
+  .arc-live .arc-track {
+    display:block; position:relative; overflow:visible; scroll-snap-type:none; padding:0;
+    width:100%; height:calc(var(--w) * 4.3 / 3 + 7rem);
+    perspective:1400px; transform-style:preserve-3d;
+    touch-action: pan-y;
+  }
+  .arc-live .arc-slot {
+    --off:0; --abs:0;
+    position:absolute; top:3rem; left:50%; flex:none;
+    width:var(--w); margin-left:calc(var(--w) / -2);
+    transform-style:preserve-3d;
+    transform: translateX(calc(var(--off) * (var(--w) + 1.25rem)))
+               translateZ(calc(var(--abs) * 70px))
+               rotateY(calc(var(--off) * -16deg));
+  }
+  .arc-live .arc-card {
+    backface-visibility:hidden;
+    filter: brightness(max(0.4, calc(1 - var(--abs) * 0.1)));
+    transition: transform .5s cubic-bezier(.2,.8,.2,1);
+    -webkit-user-select:none; user-select:none;
+  }
+  .arc-live.is-dragging .arc-card { transition:none; }
+  /* Effetto hover: la card si raddrizza e si avvicina (mouse/tastiera) */
+  .arc-live .arc-card:hover, .arc-live .arc-card:focus-visible {
+    transform: rotateY(calc(var(--off) * 16deg)) translateZ(80px) scale(1.04);
+    filter:none;
+  }
+</style>
 
     {% set featuredProjects = projects | selectattr("featured") | sort(false, false, "order") %}
     <div class="arc-stage relative mb-10">
@@ -226,7 +236,7 @@ C 244 460, 250 460, 278 460" />
         {% for project in featuredProjects %}
         <div class="arc-slot">
           <a href="{{ project.url }}" target="_blank" rel="noopener noreferrer" class="arc-card group relative block rounded-2xl overflow-hidden border border-slate-700/60 bg-slate-950 shadow-2xl shadow-black/60" style="background:white;" aria-label="{{ project.title | striptags | safe }}">
-            <img class="absolute inset-0 w-full h-full object-cover object-top" src="/{{ project.image }}" alt="{{ project.imageAlt }}" loading="lazy"/>
+            <img class="absolute inset-0 w-full h-full object-cover object-top" src="{{ project.image }}" alt="{{ project.imageAlt }}" loading="lazy"/>
             <div class="absolute inset-x-0 bottom-0 p-4 pt-16 bg-gradient-to-t from-black/90 via-black/50 to-transparent">
               <span class="inline-block mb-1.5 px-2 py-0.5 rounded bg-slate-950/80 border border-slate-700/60 text-cyan-300 font-label-uppercase text-label-uppercase">{{ project.badge | safe }}</span>
               <h3 class="text-sm font-semibold text-white leading-snug line-clamp-2">{{ project.title | safe }}</h3>
@@ -238,77 +248,131 @@ C 244 460, 250 460, 278 460" />
     </div>
 
     <script>
-    (function () {
-      var stage = document.querySelector('.arc-stage');
-      if (!stage) return;
-      var track = stage.querySelector('.arc-track');
-      var base = [].slice.call(track.querySelectorAll('.arc-slot'));
-      var n = base.length;
-      if (n < 2) return;
+/* Galleria ad arco: scorre di continuo, si ferma con il mouse sopra e si può
+   ruotare a comando trascinando con il dito (mobile) o con il mouse (desktop) */
+(function () {
+  var stage = document.querySelector('.arc-stage');
+  if (!stage) return;
+  var track = stage.querySelector('.arc-track');
+  var base = [].slice.call(track.querySelectorAll('.arc-slot'));
+  var n = base.length;
+  if (n < 2) return;
 
-      var SPEED = 0.2;
-      var slots = base.slice();
-      var reps = Math.ceil(12 / n);
-      for (var r = 1; r < reps; r++) {
-        base.forEach(function (el) {
-          var c = el.cloneNode(true);
-          c.setAttribute('data-clone', '');
-          c.setAttribute('aria-hidden', 'true');
-          var link = c.querySelector('a');
-          if (link) link.setAttribute('tabindex', '-1');
-          track.appendChild(c);
-          slots.push(c);
-        });
+  var SPEED = 0.2;               // card al secondo (0.2 = una card ogni 5 s)
+  var slots = base.slice();
+  var reps = Math.ceil(12 / n);  // duplicati per far sembrare il giro infinito
+  for (var r = 1; r < reps; r++) {
+    base.forEach(function (el) {
+      var c = el.cloneNode(true);
+      c.setAttribute('data-clone', '');
+      c.setAttribute('aria-hidden', 'true');
+      var link = c.querySelector('a');
+      if (link) link.setAttribute('tabindex', '-1');
+      track.appendChild(c);
+      slots.push(c);
+    });
+  }
+  var M = slots.length, half = M / 2;
+  var t = 0, last = null, raf = null, hover = false, focus = false, dragging = false, anim = false;
+
+  var mqReduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  function cardStepPx() {
+    var w = window.innerWidth;
+    var cardW = w >= 768
+      ? Math.min(240, Math.max(170, w * 0.16))
+      : Math.min(150, Math.max(110, w * 0.30));
+    return cardW + 20; // + gap (1.25rem)
+  }
+
+  function render() {
+    slots.forEach(function (el, k) {
+      var x = k - (n - 1) / 2;
+      var op = '';
+      x = ((x - t + half) % M + M) % M - half;
+      var a = Math.abs(x);
+      if (a > half - 1) op = Math.max(0, half - a);
+      el.style.setProperty('--off', x.toFixed(3));
+      el.style.setProperty('--abs', a.toFixed(3));
+      el.style.opacity = op;
+    });
+  }
+
+  function tick(now) {
+    if (last === null) last = now;
+    var dt = Math.min(now - last, 50) / 1000;
+    last = now;
+    if (anim && !(hover || focus || dragging)) { t = (t + dt * SPEED) % M; render(); }
+    raf = requestAnimationFrame(tick);
+  }
+
+  function apply() {
+    anim = !mqReduce.matches;
+    stage.classList.add('arc-live');
+    stage.classList.toggle('arc-anim', anim);
+    render();
+    if (!raf) { last = null; raf = requestAnimationFrame(tick); }
+  }
+
+  stage.addEventListener('mouseenter', function () { hover = true; });
+  stage.addEventListener('mouseleave', function () { hover = false; last = null; });
+  stage.addEventListener('focusin',  function () { focus = true; });
+  stage.addEventListener('focusout', function () { focus = false; last = null; });
+  mqReduce.addEventListener('change', apply);
+
+  /* Trascinamento: dito su mobile, mouse su desktop (Pointer Events unifica i due) */
+  var drag = null;      // {x, y, t, active}
+  var suppressClick = false;
+
+  track.addEventListener('pointerdown', function (e) {
+    if (e.pointerType === 'mouse' && e.button !== 0) return;
+    drag = { x: e.clientX, y: e.clientY, t: t, active: false, id: e.pointerId };
+  });
+
+  track.addEventListener('pointermove', function (e) {
+    if (!drag || drag.id !== e.pointerId) return;
+    var dx = e.clientX - drag.x;
+    var dy = e.clientY - drag.y;
+    if (!drag.active) {
+      if (Math.abs(dx) > 6 && Math.abs(dx) > Math.abs(dy)) {
+        drag.active = true;
+        dragging = true;
+        stage.classList.add('is-dragging');
+        try { track.setPointerCapture(e.pointerId); } catch (err) {}
+      } else if (Math.abs(dy) > 6) {
+        drag = null;
+        return;
+      } else {
+        return;
       }
-      var M = slots.length, half = M / 2;
-      var t = 0, last = null, raf = null, hover = false, focus = false, anim = false;
+    }
+    e.preventDefault();
+    var deltaCards = dx / cardStepPx();
+    t = ((drag.t - deltaCards) % M + M) % M;
+    render();
+  });
 
-      var mqDesk = window.matchMedia('(min-width:768px)');
-      var mqReduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+  function endDrag(e) {
+    if (!drag) return;
+    if (drag.active) {
+      suppressClick = true;
+      setTimeout(function () { suppressClick = false; }, 0);
+    }
+    drag = null;
+    dragging = false;
+    stage.classList.remove('is-dragging');
+    last = null;
+  }
+  track.addEventListener('pointerup', endDrag);
+  track.addEventListener('pointercancel', endDrag);
 
-      function render() {
-        slots.forEach(function (el, k) {
-          var x = k - (n - 1) / 2;
-          var op = '';
-          if (anim) {
-            x = ((x - t + half) % M + M) % M - half;
-            var a = Math.abs(x);
-            if (a > half - 1) op = Math.max(0, half - a);
-          }
-          el.style.setProperty('--off', x.toFixed(3));
-          el.style.setProperty('--abs', Math.abs(x).toFixed(3));
-          el.style.opacity = op;
-        });
-      }
+  stage.addEventListener('click', function (e) {
+    if (suppressClick) { e.preventDefault(); e.stopPropagation(); }
+  }, true);
 
-      function tick(now) {
-        if (last === null) last = now;
-        var dt = Math.min(now - last, 50) / 1000;
-        last = now;
-        if (!(hover || focus)) { t = (t + dt * SPEED) % M; render(); }
-        raf = requestAnimationFrame(tick);
-      }
-
-      function apply() {
-        var live = mqDesk.matches;
-        anim = live && !mqReduce.matches;
-        stage.classList.toggle('arc-live', live);
-        stage.classList.toggle('arc-anim', anim);
-        if (raf) { cancelAnimationFrame(raf); raf = null; }
-        if (!live) { slots.forEach(function (el) { el.style.opacity = ''; }); return; }
-        render();
-        if (anim) { last = null; raf = requestAnimationFrame(tick); }
-      }
-
-      stage.addEventListener('mouseenter', function () { hover = true; });
-      stage.addEventListener('mouseleave', function () { hover = false; last = null; });
-      stage.addEventListener('focusin',  function () { focus = true; });
-      stage.addEventListener('focusout', function () { focus = false; last = null; });
-      mqDesk.addEventListener('change', apply);
-      mqReduce.addEventListener('change', apply);
-      apply();
-    })();
-    </script>
+  apply();
+})();
+</script>
     
     <div class="text-center">
       <a href="/progetti/" class="inline-flex items-center gap-2 px-8 py-3.5 rounded-full text-xs font-bold uppercase tracking-wider text-cyan-400 bg-slate-900 border border-cyan-900/40 hover:bg-cyan-600 hover:text-white transition-all duration-300 shadow-md">

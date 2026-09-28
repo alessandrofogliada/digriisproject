@@ -354,21 +354,24 @@ layout: base.njk
 <!-- PORTFOLIO — GALLERIA AD ARCO -->
 <section class="relative w-full overflow-hidden py-space-3xl bg-[#070e14] border-t border-slate-800/80" id="portfolio">
 <style>
-  /* Mobile / senza JS: scroll orizzontale con snap */
+  /* Fallback senza JS: fila orizzontale scorribile */
   .arc-track { display:flex; gap:1rem; overflow-x:auto; scroll-snap-type:x mandatory; padding:0 1.5rem 1.5rem; scrollbar-width:none; }
   .arc-slot { flex:0 0 68%; scroll-snap-align:center; }
   .arc-card { width:100%; aspect-ratio:3/4.3; }
-  /* Mobile: immagine intera, non ritagliata (zoom indietro) */
   .arc-stage:not(.arc-live) .arc-card img { object-fit:contain; object-position:center; }
   .arc-stage:not(.arc-anim) .arc-slot[data-clone] { display:none; }
 
-  /* Desktop: arco 3D (centro più piccolo, lati più grandi).
+  /* Arco 3D (centro più piccolo, lati più grandi) — mobile e desktop.
      Le posizioni (--off = distanza dal centro in "card") le aggiorna lo script in fondo alla sezione. */
-  .arc-live { --w: clamp(170px, 16vw, 240px); }
+  .arc-stage { --w: clamp(110px, 30vw, 150px); }
+  @media (min-width:768px) { .arc-stage { --w: clamp(170px, 16vw, 240px); } }
+  .arc-live { cursor: grab; }
+  .arc-live.is-dragging { cursor: grabbing; }
   .arc-live .arc-track {
     display:block; position:relative; overflow:visible; scroll-snap-type:none; padding:0;
     width:100%; height:calc(var(--w) * 4.3 / 3 + 7rem);
     perspective:1400px; transform-style:preserve-3d;
+    touch-action: pan-y;
   }
   .arc-live .arc-slot {
     --off:0; --abs:0;
@@ -383,8 +386,10 @@ layout: base.njk
     backface-visibility:hidden;
     filter: brightness(max(0.4, calc(1 - var(--abs) * 0.1)));
     transition: transform .5s cubic-bezier(.2,.8,.2,1);
+    -webkit-user-select:none; user-select:none;
   }
-  /* Effetto hover come prima: la card si raddrizza e si avvicina */
+  .arc-live.is-dragging .arc-card { transition:none; }
+  /* Effetto hover: la card si raddrizza e si avvicina (mouse/tastiera) */
   .arc-live .arc-card:hover, .arc-live .arc-card:focus-visible {
     transform: rotateY(calc(var(--off) * 16deg)) translateZ(80px) scale(1.04);
     filter:none;
@@ -431,7 +436,8 @@ layout: base.njk
 </div>
 
 <script>
-/* Galleria ad arco: scorre di continuo, si ferma con il mouse sopra */
+/* Galleria ad arco: scorre di continuo, si ferma con il mouse sopra e si può
+   ruotare a comando trascinando con il dito (mobile) o con il mouse (desktop) */
 (function () {
   var stage = document.querySelector('.arc-stage');
   if (!stage) return;
@@ -455,22 +461,27 @@ layout: base.njk
     });
   }
   var M = slots.length, half = M / 2;
-  var t = 0, last = null, raf = null, hover = false, focus = false, anim = false;
+  var t = 0, last = null, raf = null, hover = false, focus = false, dragging = false, anim = false;
 
-  var mqDesk = window.matchMedia('(min-width:768px)');
   var mqReduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  function cardStepPx() {
+    var w = window.innerWidth;
+    var cardW = w >= 768
+      ? Math.min(240, Math.max(170, w * 0.16))
+      : Math.min(150, Math.max(110, w * 0.30));
+    return cardW + 20; // + gap (1.25rem)
+  }
 
   function render() {
     slots.forEach(function (el, k) {
       var x = k - (n - 1) / 2;
       var op = '';
-      if (anim) {
-        x = ((x - t + half) % M + M) % M - half;
-        var a = Math.abs(x);
-        if (a > half - 1) op = Math.max(0, half - a);
-      }
+      x = ((x - t + half) % M + M) % M - half;
+      var a = Math.abs(x);
+      if (a > half - 1) op = Math.max(0, half - a);
       el.style.setProperty('--off', x.toFixed(3));
-      el.style.setProperty('--abs', Math.abs(x).toFixed(3));
+      el.style.setProperty('--abs', a.toFixed(3));
       el.style.opacity = op;
     });
   }
@@ -479,27 +490,74 @@ layout: base.njk
     if (last === null) last = now;
     var dt = Math.min(now - last, 50) / 1000;
     last = now;
-    if (!(hover || focus)) { t = (t + dt * SPEED) % M; render(); }
+    if (anim && !(hover || focus || dragging)) { t = (t + dt * SPEED) % M; render(); }
     raf = requestAnimationFrame(tick);
   }
 
   function apply() {
-    var live = mqDesk.matches;
-    anim = live && !mqReduce.matches;
-    stage.classList.toggle('arc-live', live);
+    anim = !mqReduce.matches;
+    stage.classList.add('arc-live');
     stage.classList.toggle('arc-anim', anim);
-    if (raf) { cancelAnimationFrame(raf); raf = null; }
-    if (!live) { slots.forEach(function (el) { el.style.opacity = ''; }); return; }
     render();
-    if (anim) { last = null; raf = requestAnimationFrame(tick); }
+    if (!raf) { last = null; raf = requestAnimationFrame(tick); }
   }
 
   stage.addEventListener('mouseenter', function () { hover = true; });
   stage.addEventListener('mouseleave', function () { hover = false; last = null; });
   stage.addEventListener('focusin',  function () { focus = true; });
   stage.addEventListener('focusout', function () { focus = false; last = null; });
-  mqDesk.addEventListener('change', apply);
   mqReduce.addEventListener('change', apply);
+
+  /* Trascinamento: dito su mobile, mouse su desktop (Pointer Events unifica i due) */
+  var drag = null;      // {x, y, t, active}
+  var suppressClick = false;
+
+  track.addEventListener('pointerdown', function (e) {
+    if (e.pointerType === 'mouse' && e.button !== 0) return;
+    drag = { x: e.clientX, y: e.clientY, t: t, active: false, id: e.pointerId };
+  });
+
+  track.addEventListener('pointermove', function (e) {
+    if (!drag || drag.id !== e.pointerId) return;
+    var dx = e.clientX - drag.x;
+    var dy = e.clientY - drag.y;
+    if (!drag.active) {
+      if (Math.abs(dx) > 6 && Math.abs(dx) > Math.abs(dy)) {
+        drag.active = true;
+        dragging = true;
+        stage.classList.add('is-dragging');
+        try { track.setPointerCapture(e.pointerId); } catch (err) {}
+      } else if (Math.abs(dy) > 6) {
+        drag = null;
+        return;
+      } else {
+        return;
+      }
+    }
+    e.preventDefault();
+    var deltaCards = dx / cardStepPx();
+    t = ((drag.t - deltaCards) % M + M) % M;
+    render();
+  });
+
+  function endDrag(e) {
+    if (!drag) return;
+    if (drag.active) {
+      suppressClick = true;
+      setTimeout(function () { suppressClick = false; }, 0);
+    }
+    drag = null;
+    dragging = false;
+    stage.classList.remove('is-dragging');
+    last = null;
+  }
+  track.addEventListener('pointerup', endDrag);
+  track.addEventListener('pointercancel', endDrag);
+
+  stage.addEventListener('click', function (e) {
+    if (suppressClick) { e.preventDefault(); e.stopPropagation(); }
+  }, true);
+
   apply();
 })();
 </script>
@@ -602,3 +660,5 @@ layout: base.njk
   </div>
   </div>
   </section>
+
+
